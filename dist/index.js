@@ -11,18 +11,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const selenium_webdriver_1 = require("selenium-webdriver");
 const chrome_1 = require("selenium-webdriver/chrome");
-function Main() {
+function openMeet(driver) {
     return __awaiter(this, void 0, void 0, function* () {
-        const options = new chrome_1.Options({});
-        options.addArguments("--disable-blink-features=AutomationControlled");
-        options.addArguments("--use-fake-ui-for-media-stream");
-        let driver = yield new selenium_webdriver_1.Builder()
-            .forBrowser(selenium_webdriver_1.Browser.CHROME)
-            .setChromeOptions(options)
-            .build();
         try {
             yield driver.get("https://meet.google.com/pdc-zifk-wea");
-            yield driver.sleep(3000);
+            yield driver.sleep(1000);
             const popubutton = yield driver.wait(selenium_webdriver_1.until.elementLocated(selenium_webdriver_1.By.xpath('//span[contains(text(),"Got it")]')), 10000);
             yield popubutton.click();
             // const nameinput = await driver.wait(
@@ -41,4 +34,31 @@ function Main() {
         }
     });
 }
-Main();
+function getDriver() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const options = new chrome_1.Options({});
+        options.addArguments("--disable-blink-features=AutomationControlled");
+        options.addArguments("--use-fake-ui-for-media-stream");
+        options.addArguments("--window-size=1080,720");
+        options.addArguments("--auto-select-desktop-capture-source=[RECORD]");
+        options.addArguments("--auto-select-desktop-capture-source=[RECORD]");
+        options.addArguments("--enable-usermedia-screen-capturing");
+        options.addArguments('--auto-select-tab-capture-source-by-title="Meet"');
+        options.addArguments("--allow-running-insecure-content");
+        // ​​--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content
+        let driver = yield new selenium_webdriver_1.Builder()
+            .forBrowser(selenium_webdriver_1.Browser.CHROME)
+            .setChromeOptions(options)
+            .build();
+        return driver;
+    });
+}
+function Main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const driver = yield getDriver();
+        yield openMeet(driver);
+    });
+}
+for (let i = 0; i < 50; i++) {
+    Main();
+}

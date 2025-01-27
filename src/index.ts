@@ -1,14 +1,7 @@
-import { Builder, Browser, By, Key, until } from "selenium-webdriver";
+import { Builder, Browser, By, until, WebDriver } from "selenium-webdriver";
 import { Options } from "selenium-webdriver/chrome";
 
-async function Main() {
-  const options = new Options({});
-  options.addArguments("--disable-blink-features=AutomationControlled");
-  options.addArguments("--use-fake-ui-for-media-stream");
-  let driver = await new Builder()
-    .forBrowser(Browser.CHROME)
-    .setChromeOptions(options)
-    .build();
+async function openMeet(driver: WebDriver) {
   try {
     await driver.get("https://meet.google.com/pdc-zifk-wea");
     await driver.sleep(3000);
@@ -22,9 +15,9 @@ async function Main() {
     //   10000
     // );
     const nameinput = await driver.wait(
-        until.elementLocated(By.xpath('//input[@placeholder="Your name"]')),
-        10000
-      );
+      until.elementLocated(By.xpath('//input[@placeholder="Your name"]')),
+      10000
+    );
     await nameinput.clear();
     await nameinput.click();
     await nameinput.sendKeys("value");
@@ -40,5 +33,30 @@ async function Main() {
   } finally {
     await driver.quit();
   }
+}
+
+async function getDriver() {
+  const options = new Options({});
+  options.addArguments("--disable-blink-features=AutomationControlled");
+  options.addArguments("--use-fake-ui-for-media-stream");
+  options.addArguments("--window-size=1080,720");
+  options.addArguments("--auto-select-desktop-capture-source=[RECORD]");
+  options.addArguments("--auto-select-desktop-capture-source=[RECORD]");
+  options.addArguments("--enable-usermedia-screen-capturing");
+  options.addArguments('--auto-select-tab-capture-source-by-title="Meet"');
+  options.addArguments("--allow-running-insecure-content");
+
+  // ​​--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content
+
+  let driver = await new Builder()
+    .forBrowser(Browser.CHROME)
+    .setChromeOptions(options)
+    .build();
+  return driver;
+}
+
+async function Main() {
+  const driver = await getDriver();
+  await openMeet(driver);
 }
 Main();

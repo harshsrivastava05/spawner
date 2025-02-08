@@ -5,7 +5,7 @@ import openZoom from "./platforms/zoom";
 import ZoomJoin from "./platforms/JoinZoom";
 
 const url =
-  "https://us04web.zoom.us/j/9156246426?pwd=Y2FCQzMrSGRBL1JlTWpIMVBpczlvdz09";
+  "https://meet.google.com/ttw-wpgg-azp";
 const meetingid = "915 624 6426";
 const password = "169268";
 
@@ -85,7 +85,7 @@ async function startScreenshare(driver: WebDriver) {
           const recordedChunks = await startRecording(combinedStream, 60000);
           console.log("after start recording")
           
-          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
+          let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
           
           // Create download for video with audio
           const recording = document.createElement("video");
@@ -111,10 +111,10 @@ async function startScreenshare(driver: WebDriver) {
 
 async function Main() {
   const driver = await getChromeDriver();
-  //   await openMeet(driver, url);
+    await openMeet(driver, url);
   // await openZoom(driver, url);
   // await Zoom(driver, password, url);
-  await ZoomJoin(driver, url);
+  // await ZoomJoin(driver, url);
   await new Promise((x) => setTimeout(x, 20000));
   // wait until admin lets u join
   await startScreenshare(driver);

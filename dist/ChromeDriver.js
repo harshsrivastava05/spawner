@@ -32,11 +32,4 @@ function getChromeDriver() {
         return driver;
     });
 }
-// System.setProperty("webdriver.chrome.driver", "//chrome path in system//");
-// ChromeOptions options  = new ChromeOptions();
-// //options.addArguments("incognito");
-// options.addArguments("--disable-popup-blocking");
-// DesiredCapabilities capabilities = new DesiredCapabilities();
-// capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-// driver = new ChromeDriver(capabilities);
 exports.default = getChromeDriver;

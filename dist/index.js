@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const ChromeDriver_1 = __importDefault(require("./ChromeDriver"));
-const insert_1 = __importDefault(require("./platforms/insert"));
-const url = "https://us04web.zoom.us/j/9156246426?pwd=Y2FCQzMrSGRBL1JlTWpIMVBpczlvdz09";
+const meet_1 = __importDefault(require("./platforms/meet"));
+const url = "https://meet.google.com/ttw-wpgg-azp";
 const meetingid = "915 624 6426";
 const password = "169268";
 function startScreenshare(driver) {
@@ -120,10 +120,10 @@ function startScreenshare(driver) {
 function Main() {
     return __awaiter(this, void 0, void 0, function* () {
         const driver = yield (0, ChromeDriver_1.default)();
-        //   await openMeet(driver, url);
+        yield (0, meet_1.default)(driver, url);
         // await openZoom(driver, url);
         // await Zoom(driver, password, url);
-        yield (0, insert_1.default)(driver, url);
+        // await ZoomJoin(driver, url);
         yield new Promise((x) => setTimeout(x, 20000));
         // wait until admin lets u join
         yield startScreenshare(driver);

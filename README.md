@@ -17,7 +17,7 @@ Ensure you have the following installed on your system:
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone [https://github.com/yourusername/google-meet-bot.git](https://github.com/harshsrivastava05/spawner.git)
+   git clone (https://github.com/harshsrivastava05/spawner.git)
    cd spawner
    ```
 2. Install dependencies:

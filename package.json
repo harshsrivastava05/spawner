@@ -10,8 +10,6 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@ffmpeg/core": "^0.12.10",
-    "@ffmpeg/ffmpeg": "^0.10.0",
     "@types/selenium-webdriver": "^4.1.28",
     "selenium-webdriver": "^4.28.1",
     "typescript": "^5.7.2"

@@ -4,8 +4,7 @@ import openMeet from "./platforms/meet";
 import openZoom from "./platforms/zoom";
 import ZoomJoin from "./platforms/JoinZoom";
 
-const url =
-  "Your google meet url";
+const url = "your url here";
 
 async function startScreenshare(driver: WebDriver, recordingTime: number) {
   console.log("startScreensharecalled");
@@ -59,19 +58,6 @@ async function startScreenshare(driver: WebDriver, recordingTime: number) {
             audioElStream1.connect(dest)
             audioElStream2.connect(dest)
             audioElStream3.connect(dest)
-
-            // window.setInterval(() => {
-            //   document.querySelectorAll("audio").forEach(audioEl => {
-            //     if (!audioEl.getAttribute("added")) {
-            //       console.log("adding new audio");
-            //       const audioEl = document.querySelector("audio");
-            //       const audioElStream = audioContext.createMediaStreamSource(audioEl.srcObject)
-            //       audioEl.setAttribute("added", true);
-            //       audioElStream.connect(dest)
-            //     }
-            //   })
-
-            // }, 2500);
           
           // Combine screen and audio streams
           const combinedStream = new MediaStream([
@@ -109,10 +95,10 @@ async function startScreenshare(driver: WebDriver, recordingTime: number) {
 
 async function Main() {
   const driver = await getChromeDriver();
-    await openMeet(driver, url);
-    await new Promise((x) => setTimeout(x, 20000));
-    // wait until admin lets u join
-    const recordingTime = 20000; // time in ms
-    await startScreenshare(driver, recordingTime);
+  await openMeet(driver, url);
+  await new Promise((x) => setTimeout(x, 20000));
+  // wait until admin lets u join
+  const recordingTime = 20000; // time in ms
+  await startScreenshare(driver, recordingTime);
 }
 Main();

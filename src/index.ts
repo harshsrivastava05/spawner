@@ -5,11 +5,9 @@ import openZoom from "./platforms/zoom";
 import ZoomJoin from "./platforms/JoinZoom";
 
 const url =
-  "https://meet.google.com/ttw-wpgg-azp";
-const meetingid = "915 624 6426";
-const password = "169268";
+  "Your google meet url";
 
-async function startScreenshare(driver: WebDriver) {
+async function startScreenshare(driver: WebDriver, recordingTime: number) {
   console.log("startScreensharecalled");
   const response = await driver.executeScript(`
 
@@ -82,10 +80,10 @@ async function startScreenshare(driver: WebDriver) {
           ]);
           
           console.log("before start recording")
-          const recordedChunks = await startRecording(combinedStream, 60000);
+          const recordedChunks = await startRecording(combinedStream, ${recordingTime});
           console.log("after start recording")
           
-          let recordedBlob = new Blob(recordedChunks, { type: "video/mp4" });
+          let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
           
           // Create download for video with audio
           const recording = document.createElement("video");
@@ -112,11 +110,9 @@ async function startScreenshare(driver: WebDriver) {
 async function Main() {
   const driver = await getChromeDriver();
     await openMeet(driver, url);
-  // await openZoom(driver, url);
-  // await Zoom(driver, password, url);
-  // await ZoomJoin(driver, url);
-  await new Promise((x) => setTimeout(x, 20000));
-  // wait until admin lets u join
-  await startScreenshare(driver);
+    await new Promise((x) => setTimeout(x, 20000));
+    // wait until admin lets u join
+    const recordingTime = 20000; // time in ms
+    await startScreenshare(driver, recordingTime);
 }
 Main();

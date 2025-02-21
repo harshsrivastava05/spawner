@@ -14,10 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ChromeDriver_1 = __importDefault(require("./ChromeDriver"));
 const meet_1 = __importDefault(require("./platforms/meet"));
-const url = "https://meet.google.com/ttw-wpgg-azp";
-const meetingid = "915 624 6426";
-const password = "169268";
-function startScreenshare(driver) {
+const url = "https://meet.google.com/bpm-pthj-cik";
+function startScreenshare(driver, recordingTime) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log("startScreensharecalled");
         const response = yield driver.executeScript(`
@@ -91,7 +89,7 @@ function startScreenshare(driver) {
           ]);
           
           console.log("before start recording")
-          const recordedChunks = await startRecording(combinedStream, 60000);
+          const recordedChunks = await startRecording(combinedStream, ${recordingTime});
           console.log("after start recording")
           
           let recordedBlob = new Blob(recordedChunks, { type: "video/webm" });
@@ -121,12 +119,10 @@ function Main() {
     return __awaiter(this, void 0, void 0, function* () {
         const driver = yield (0, ChromeDriver_1.default)();
         yield (0, meet_1.default)(driver, url);
-        // await openZoom(driver, url);
-        // await Zoom(driver, password, url);
-        // await ZoomJoin(driver, url);
         yield new Promise((x) => setTimeout(x, 20000));
         // wait until admin lets u join
-        yield startScreenshare(driver);
+        const recordingTime = 20000; // time in ms
+        yield startScreenshare(driver, recordingTime);
     });
 }
 Main();

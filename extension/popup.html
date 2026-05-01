@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spawner Trigger</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="spawner-logo">
+        <div class="dot"></div>
+        <div class="pulse"></div>
+      </div>
+      <h2>Join Meeting</h2>
+    </div>
+    
+    <div class="form-group">
+      <label for="url">Meeting Link</label>
+      <input type="text" id="url" placeholder="https://meet.google.com/xyz-abcd-efg" />
+    </div>
+
+    <div class="form-group">
+      <label for="recordingTime">Recording Time (minutes)</label>
+      <input type="number" id="recordingTime" value="10" placeholder="10" min="1" />
+    </div>
+
+    <button id="startBtn">Start Recording</button>
+
+    <div id="status" class="status"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

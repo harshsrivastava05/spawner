@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Spawner Trigger",
+  "version": "1.0",
+  "description": "Trigger local screen recording via Spawner.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Spawner Trigger"
+  },
+  "host_permissions": [
+    "http://localhost:3000/*"
+  ]
+}

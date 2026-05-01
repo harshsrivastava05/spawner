@@ -1,0 +1,132 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  background-color: #ffffff;
+  color: #3c4043;
+  width: 320px;
+}
+
+.container {
+  padding: 24px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.spawner-logo {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spawner-logo .dot {
+  width: 12px;
+  height: 12px;
+  background-color: #d93025;
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.spawner-logo .pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(217, 48, 37, 0.4);
+  border-radius: 50%;
+  animation: pulse-animation 2s infinite;
+  z-index: 1;
+}
+
+@keyframes pulse-animation {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #202124;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #5f6368;
+  margin-bottom: 8px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #dadce0;
+  border-radius: 4px;
+  font-size: 14px;
+  box-sizing: border-box;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #1a73e8;
+  box-shadow: 0 0 0 1px #1a73e8;
+}
+
+button {
+  width: 100%;
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Google Sans', Roboto, Arial, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  background-color: #185abc;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+button:active {
+  background-color: #174ea6;
+}
+
+button:disabled {
+  background-color: #dadce0;
+  color: #80868b;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.status {
+  margin-top: 16px;
+  font-size: 13px;
+  text-align: center;
+  min-height: 18px;
+}
+
+.status.success {
+  color: #1e8e3e;
+}
+
+.status.error {
+  color: #d93025;
+}

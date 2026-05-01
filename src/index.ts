@@ -2,7 +2,12 @@ import { By, until, WebDriver } from "selenium-webdriver";
 import getChromeDriver from "./ChromeDriver";
 import openMeet from "./platforms/meet";
 
-const url = "your url here";
+import express from 'express';
+import cors from 'cors';
+
+const app = express();
+app.use(cors());
+app.use(express.json());
 
 async function startScreenshare(driver: WebDriver, recordingTime: number) {
   console.log("startScreensharecalled");
@@ -90,12 +95,29 @@ async function startScreenshare(driver: WebDriver, recordingTime: number) {
   driver.sleep(1000000);
 }
 
-async function Main() {
-  const driver = await getChromeDriver();
-  await openMeet(driver, url);
-  await new Promise((x) => setTimeout(x, 20000));
-  // wait until admin lets u join
-  const recordingTime = 20000; // time in ms
-  await startScreenshare(driver, recordingTime);
-}
-Main();
+app.post('/start', async (req, res) => {
+  const { url, recordingTime } = req.body;
+  if (!url || !recordingTime) {
+    return res.status(400).json({ error: 'url and recordingTime are required in the request body' });
+  }
+
+  // Acknowledge the request immediately
+  res.json({ message: 'Recording process started successfully!' });
+
+  try {
+    const driver = await getChromeDriver();
+    await openMeet(driver, url);
+    await new Promise((x) => setTimeout(x, 20000));
+    // wait until admin lets u join
+    // Convert recording time from minutes to milliseconds
+    const recordingTimeMs = Number(recordingTime) * 60 * 1000;
+    await startScreenshare(driver, recordingTimeMs);
+  } catch (error) {
+    console.error("Error during recording session:", error);
+  }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Spawner server listening on port ${PORT}`);
+});

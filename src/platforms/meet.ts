@@ -9,10 +9,6 @@ async function openMeet(driver: WebDriver, url: string) {
       10000
     );
     await popubutton.click();
-    // const nameinput = await driver.wait(
-    //   until.elementLocated(By.id('c11')),
-    //   10000
-    // );
     const nameinput = await driver.wait(
       until.elementLocated(By.xpath('//input[@placeholder="Your name"]')),
       10000

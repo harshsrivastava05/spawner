@@ -10,11 +10,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@types/selenium-webdriver": "^4.1.28",
-    "selenium-webdriver": "^4.28.1",
-    "typescript": "^5.7.2"
+    "@types/selenium-webdriver": "^4.35.5",
+    "selenium-webdriver": "^4.43.0",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@types/node": "^22.10.10"
+    "@types/node": "^25.6.0"
   }
 }

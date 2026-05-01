@@ -1,1 +1,1 @@
-{"root":["./src/chromedriver.ts","./src/index.ts","./src/platforms/joinzoom.ts","./src/platforms/meet.ts","./src/platforms/zoom.ts"],"version":"5.7.2"}
+{"root":["./src/chromedriver.ts","./src/index.ts","./src/platforms/meet.ts"],"version":"6.0.3"}

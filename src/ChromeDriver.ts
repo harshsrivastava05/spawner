@@ -14,8 +14,6 @@ async function getChromeDriver() {
   options.addArguments("--disable-user-media-security=true");
   options.addArguments("--disable-popup-blocking");
   
- 
-  // ​​--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content--allow-file-access-from-files--use-fake-device-for-media-stream--allow-running-insecure-content
   
   let driver = await new Builder()
     .forBrowser(Browser.CHROME)

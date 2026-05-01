@@ -1,8 +1,6 @@
 import { By, until, WebDriver } from "selenium-webdriver";
 import getChromeDriver from "./ChromeDriver";
 import openMeet from "./platforms/meet";
-import openZoom from "./platforms/zoom";
-import ZoomJoin from "./platforms/JoinZoom";
 
 const url = "your url here";
 
@@ -84,7 +82,6 @@ async function startScreenshare(driver: WebDriver, recordingTime: number) {
           
           // Clean up streams
           screenStream.getTracks().forEach(track => track.stop());
-          audioStream.getTracks().forEach(track => track.stop());
         })
         
     `);
